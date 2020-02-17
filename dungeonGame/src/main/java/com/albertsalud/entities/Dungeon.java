@@ -1,6 +1,11 @@
 package com.albertsalud.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Dungeon {
+	
+	private List<Character> dungeonCharacters;
 
 	private int height;
 	private int width;
@@ -12,6 +17,8 @@ public class Dungeon {
 	public Dungeon(int height, int width) {
 		this.height = height;
 		this.width = width;
+		
+		dungeonCharacters = new ArrayList<Character>();
 	}
 
 	public int getWidth() {
@@ -30,8 +37,7 @@ public class Dungeon {
 		for(int i = 1; i <= this.height; i ++) {
 			for(int j = 1; j <= this.width; j++) {
 				if (j == 1) dungeonPrint.append(i + " |");
-				
-				dungeonPrint.append("___|");
+				dungeonPrint.append(checkCurrentLocation(i, j));
 				
 			}
 			dungeonPrint.append("\n");
@@ -39,6 +45,25 @@ public class Dungeon {
 		
 		return dungeonPrint.toString();
 		
+	}
+	
+	public void addCharacter(Character newCharacter) {
+		dungeonCharacters.add(newCharacter);
+	}
+
+	private String checkCurrentLocation(int yCoordinate, int xCoordinate) {
+		Character dungeonCharacter = isCurrentLocationBusy(yCoordinate, xCoordinate);
+		if(dungeonCharacter != null) return "_" + dungeonCharacter.getDungeonMark() + "_|"; 
+		else return "___|";
+	}
+
+	private Character isCurrentLocationBusy(int yCoordinate, int xCoordinate) {
+		for(Character currentCharacter : dungeonCharacters) {
+			if(currentCharacter.getxCoodinate() == xCoordinate &&
+					currentCharacter.getyCoordinate() == yCoordinate) return currentCharacter;
+		}
+		
+		return null;
 	}
 
 	private String printHorizontalFrame() {
@@ -60,8 +85,23 @@ public class Dungeon {
 	}
 	
 	public static void main(String[] args) {
-		
+		System.out.println("Creando mazmorra\n");
 		Dungeon dungeon = new Dungeon(6, 10);
+		System.out.println(dungeon.printDungeon());
+		
+		Character player = new PlayerCharacter();
+		
+		dungeon.addCharacter(player);
+		System.out.println("Personaje jugador cargado en el sistema\n");
+		
+		System.out.println(dungeon.printDungeon());
+		player.moveTo(8, 5);
+		
+		System.out.println("Personaje jugador movido!\n");
+		System.out.println(dungeon.printDungeon());
+		
+		player.moveTo(2, 3);
+		System.out.println("Personaje jugador movido!\n");
 		System.out.println(dungeon.printDungeon());
 		
 	}
