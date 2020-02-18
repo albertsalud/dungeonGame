@@ -77,13 +77,17 @@ public abstract class Character {
 		this.yCoordinate = yCoordinate;
 	}
 	
-	public void moveTo(int xCoordinate, int yCoordinate) {
+	public boolean moveTo(int xCoordinate, int yCoordinate) {
 		if(checkForAvailableMovement(xCoordinate, yCoordinate)) {
 			this.setxCoodinate(xCoordinate);
 			this.setyCoordinate(yCoordinate);
 			System.out.println("El personaje se ha movido a (" + xCoordinate + ", " + yCoordinate + ")");
+			
+			return true;
+		
 		} else {
 			System.out.println("No se puede mover el personaje a (" + xCoordinate + ", " + yCoordinate + "), está demasiado lejos!");
+			return false;
 		}
 	}
 
