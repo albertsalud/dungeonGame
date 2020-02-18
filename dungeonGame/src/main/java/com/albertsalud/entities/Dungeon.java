@@ -62,7 +62,7 @@ public class Dungeon {
 	
 	public Character isLocationBusy(int yCoordinate, int xCoordinate) {
 		for(Character currentCharacter : dungeonCharacters) {
-			if(currentCharacter.getxCoodinate() == xCoordinate &&
+			if(currentCharacter.getxCoordinate() == xCoordinate &&
 					currentCharacter.getyCoordinate() == yCoordinate) return currentCharacter;
 		}
 		
@@ -75,6 +75,20 @@ public class Dungeon {
 	
 	public void printDungeon() {
 		dungeonPrinter.printDungeon(this);
+	}
+	
+	public Character getCharacterAt(int xCoordinate, int yCoordinate) {
+		for(Character currentCharacter : dungeonCharacters) {
+			if(currentCharacter.getxCoordinate() == xCoordinate &&
+					currentCharacter.getyCoordinate() == yCoordinate) return currentCharacter;
+		}
+		
+		return null;
+	}
+
+	public void removeCharacter(Character targetCharacter) {
+		dungeonCharacters.remove(targetCharacter);
+		
 	}
 
 	

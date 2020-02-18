@@ -2,18 +2,19 @@ package com.albertsalud.helpers;
 
 import com.albertsalud.entities.Character;
 import com.albertsalud.entities.Dungeon;
+import com.albertsalud.entities.PlayerCharacter;
 import com.albertsalud.main.Main;
 
 public class PlayerTurn {
 	
 	private int remainingActions;
-	private Character player;
+	private PlayerCharacter player;
 	private Dungeon dungeon;
 	
 	
 	public PlayerTurn(Dungeon dungeon, Character player) {
 		this.remainingActions = 2;	// El jugador tiene dos acciones durante su turno
-		this.player = player;
+		this.player = (PlayerCharacter) player;
 		this.dungeon = dungeon;
 		
 		System.out.println("Turno de " + player.getName());
@@ -45,10 +46,10 @@ public class PlayerTurn {
 		switch(selectedAction) {
 			case 1: 	// Mover
 				return executeMovementAction();
-			/*case 2:	// Atacar
+			case 2:	// Atacar
 				return executeAttackAction();
 			case 3:	// Cambiar de arma
-				return executeChangeWeaponAction();*/
+				return executeChangeWeaponAction();
 			default:
 				remainingActions = 0;
 				Main.endOfGame = true;
@@ -58,8 +59,78 @@ public class PlayerTurn {
 	}
 
 
-	private boolean executeMovementAction() {
+	private boolean executeChangeWeaponAction() {
+		boolean actionExecuted = false;	// Indica si la acción se ha ejecutado correctamente
+		boolean rigthEntry = false;	// Indica si se ha introducido un texto correcto por el teclado
 		
+		int selectedWeapon;
+		do {
+			try {
+				System.out.println("Selecciona el arma que deseas equipar, o 0 para cancelar: ");
+				player.showAvailableWeapons();
+				
+				System.out.print("Indica qué arma quieres equipar: ");
+				selectedWeapon = Integer.parseInt(KeyboardReader.getKeyboardInput());
+			
+				if(selectedWeapon == 0) break;
+				
+				if(!player.setEquipedWeapon(selectedWeapon)) throw new Exception("No te has podido equipar con el arma seleccionada.");
+				rigthEntry = true;
+				
+			} catch (NumberFormatException e) {
+				System.out.println("El número que has introducido no es válido!");
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				
+			}
+			
+		} while(!rigthEntry);
+		
+		return actionExecuted;
+	}
+
+
+	private boolean executeAttackAction() {
+		System.out.println("Vas a atacar con " + player.getEquipedWeapon().getName() + ".");
+		System.out.print("Indica las coordenadas del personaje a atacar (x,y) o 0,0 para cancelar: ");
+		
+		boolean actionExecuted = false;	// Indica si la acción se ha ejecutado correctamente
+		boolean rigthEntry = false;	// Indica si se ha introducido un texto correcto por el teclado
+		
+		String coordinates;
+		do {
+			try {
+				coordinates = KeyboardReader.getKeyboardInput();
+				int xCoordinate = Integer.parseInt(coordinates.split(",")[0]);
+				int yCoordinate = Integer.parseInt(coordinates.split(",")[1]);
+			
+				if(xCoordinate == 0 && yCoordinate == 0) break;
+			
+				Character targetCharacter = dungeon.getCharacterAt(xCoordinate, yCoordinate);
+				if(targetCharacter == null) throw new Exception("No hay nadie en la posición indicada!");
+				if(targetCharacter.equals(player)) throw new Exception("No te puedes atacar a ti mismo!");
+						
+				actionExecuted = player.attackTo(targetCharacter);
+				
+				if(!targetCharacter.isStillAlive()) dungeon.removeCharacter(targetCharacter);
+				rigthEntry = true;
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				System.out.print("Indica las coordenadas del personaje a atacar (x,y) o 0,0 para cancelar: ");
+				
+			}
+			
+		} while(!rigthEntry);
+		
+		return actionExecuted;
+		
+	}
+
+
+	private boolean executeMovementAction() {
+		System.out.println("Tu personaje se puede mover hasta " + player.getSpeed() + " posiciones.");
 		System.out.print("Indica las nuevas coordenadas de tu personaje (x,y) o 0,0 para cancelar: ");
 		String coordinates;
 		boolean actionExecuted = false;	// Indica si la acción se ha ejecutado correctamente

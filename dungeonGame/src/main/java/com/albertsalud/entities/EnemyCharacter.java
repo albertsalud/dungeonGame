@@ -10,7 +10,7 @@ public class EnemyCharacter extends Character {
 		this.setVitality(4);
 		this.setDungeonMark("X");
 		
-		this.setxCoodinate(initialXCoordinate);
+		this.setxCoordinate(initialXCoordinate);
 		this.setyCoordinate(initialYCoordinate);
 	}
 

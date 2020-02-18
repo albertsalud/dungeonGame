@@ -2,16 +2,22 @@ package com.albertsalud.entities;
 
 public abstract class Character {
 
-	private String name;
-	private int speed;
-	private int strength;
-	private int intelligence;
-	private int vitality;
+	private String name;		// Nombre del personaje
+	private int speed;			// Velocidad de movimiento
+	private int strength;		// Fuerza
+	private int intelligence;	// Inteligencia
+	private int vitality;		// Vida
 	
-	private String dungeonMark;
+	private String dungeonMark;	// Icono (para pintar en la mazmorra)
 	
-	private int xCoodinate;
-	private int yCoordinate;
+	private int xCoordinate;	// Coordenada x de ubicacion
+	private int yCoordinate;	// Coordenada y de ubicacion
+	
+	protected Weapon equipedWeapon;
+
+	public Weapon getEquipedWeapon() {
+		return equipedWeapon;
+	}
 
 	public String getName() {
 		return name;
@@ -61,12 +67,12 @@ public abstract class Character {
 		return dungeonMark;
 	}
 
-	public int getxCoodinate() {
-		return xCoodinate;
+	public int getxCoordinate() {
+		return xCoordinate;
 	}
 
-	protected void setxCoodinate(int xCoodinate) {
-		this.xCoodinate = xCoodinate;
+	protected void setxCoordinate(int xCoodinate) {
+		this.xCoordinate = xCoodinate;
 	}
 
 	public int getyCoordinate() {
@@ -79,7 +85,7 @@ public abstract class Character {
 	
 	public boolean moveTo(int xCoordinate, int yCoordinate) {
 		if(checkForAvailableMovement(xCoordinate, yCoordinate)) {
-			this.setxCoodinate(xCoordinate);
+			this.setxCoordinate(xCoordinate);
 			this.setyCoordinate(yCoordinate);
 			System.out.println("El personaje se ha movido a (" + xCoordinate + ", " + yCoordinate + ")");
 			
@@ -92,9 +98,28 @@ public abstract class Character {
 	}
 
 	private boolean checkForAvailableMovement(int xDestinationCoordinate, int yDestinationCoordinate) {
-		if(Math.abs(xDestinationCoordinate - this.xCoodinate) + Math.abs(yDestinationCoordinate - this.yCoordinate) <= this.speed) return true;
+		if(Math.abs(xDestinationCoordinate - this.xCoordinate) + Math.abs(yDestinationCoordinate - this.yCoordinate) <= this.speed) return true;
 		return false;
 		
+	}
+	
+	protected void setEquipedWeapon(Weapon weapon) {
+		this.equipedWeapon = weapon;
+	}
+	
+	protected void getDamage(int damage) {
+		System.out.println(this.getName() + " sufre " + damage + " puntos de vida!");
+		this.vitality -= damage;
+		if(vitality > 0) System.out.println("Aún le quedan " + vitality + " puntos de vida.");
+		else System.out.println("El personaje cae al suelo, derrotado.");
+	}
+	
+	public boolean attackTo(Character targetCharacter) {
+		return equipedWeapon.attack(this, targetCharacter);
+	}
+	
+	public boolean isStillAlive() {
+		return vitality > 0;
 	}
 
 }
