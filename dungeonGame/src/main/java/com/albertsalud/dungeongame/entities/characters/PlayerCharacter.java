@@ -1,12 +1,13 @@
-package com.albertsalud.entities.characters;
+package com.albertsalud.dungeongame.entities.characters;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.albertsalud.entities.weapons.Bow;
-import com.albertsalud.entities.weapons.ShotGun;
-import com.albertsalud.entities.weapons.Sword;
-import com.albertsalud.entities.weapons.Weapon;
+import com.albertsalud.dungeongame.entities.weapons.Bow;
+import com.albertsalud.dungeongame.entities.weapons.ShotGun;
+import com.albertsalud.dungeongame.entities.weapons.Sword;
+import com.albertsalud.dungeongame.entities.weapons.Weapon;
+import com.albertsalud.dungeongame.helpers.Dice;
 
 public class PlayerCharacter extends Character {
 	
@@ -18,6 +19,8 @@ public class PlayerCharacter extends Character {
 		setInitialPosition(initialXCoordinate, initialYCoordinate);
 		
 		setAvailableWeapons();
+		
+		this.printFeatures();
 	}
 
 	private void setAvailableWeapons() {
@@ -39,12 +42,14 @@ public class PlayerCharacter extends Character {
 	}
 
 	private void setCharacterFeatures() {
-		this.setIntelligence(10);
-		this.setName("Personaje jugador");
-		this.setSpeed(3);
-		this.setStrength(10);
-		this.setVitality(10);
-		this.setDungeonMark("P");
+		this.speed = 3;
+		this.intelligence = 10 + Dice.roll(Dice.TEN_SIDES_DICE);
+		this.strength = 10 + Dice.roll(Dice.TEN_SIDES_DICE);
+		this.name = "Jugador";
+		this.skill = 10 + Dice.roll(Dice.TEN_SIDES_DICE);		
+		this.dungeonMark = "P";
+		this.vitality = 10;
+		this.armorClass = 14;
 	}
 	
 	public void showAvailableWeapons() {

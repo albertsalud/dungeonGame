@@ -1,4 +1,4 @@
-package com.albertsalud.helpers;
+package com.albertsalud.dungeongame.helpers;
 
 import java.util.Scanner;
 

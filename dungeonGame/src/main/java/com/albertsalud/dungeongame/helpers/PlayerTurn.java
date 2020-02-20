@@ -1,9 +1,9 @@
-package com.albertsalud.helpers;
+package com.albertsalud.dungeongame.helpers;
 
-import com.albertsalud.entities.Dungeon;
-import com.albertsalud.entities.characters.Character;
-import com.albertsalud.entities.characters.PlayerCharacter;
-import com.albertsalud.main.Main;
+import com.albertsalud.dungeongame.entities.Dungeon;
+import com.albertsalud.dungeongame.entities.characters.PlayerCharacter;
+import com.albertsalud.dungeongame.entities.characters.Character;
+import com.albertsalud.dungeongame.main.Main;
 
 public class PlayerTurn {
 	

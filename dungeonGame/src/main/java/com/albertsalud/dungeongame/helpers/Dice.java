@@ -1,4 +1,4 @@
-package com.albertsalud.helpers;
+package com.albertsalud.dungeongame.helpers;
 
 public abstract class Dice {
 	
@@ -17,7 +17,7 @@ public abstract class Dice {
 	public static void main(String[] args) {
 
 		for(int tiradas = 0; tiradas < 10; tiradas++) {
-			System.out.println("Vamos a tirar un dado de 10 caras: " + Dice.roll(TEN_SIDES_DICE));
+			System.out.println("Vamos a tirar un dado de 10 caras: " + Dice.roll(SIX_SIDES_DICE));
 		
 			System.out.println("Vamos a tirar un dado de 20 caras: " + Dice.roll(TWENTIE_SIDES_DICE));
 		}

@@ -1,11 +1,11 @@
-package com.albertsalud.main;
+package com.albertsalud.dungeongame.main;
 
-import com.albertsalud.entities.Dungeon;
-import com.albertsalud.entities.characters.Character;
-import com.albertsalud.factories.DungeonFactory;
-import com.albertsalud.helpers.DungeonPrinter;
-import com.albertsalud.helpers.EnemyTurn;
-import com.albertsalud.helpers.PlayerTurn;
+import com.albertsalud.dungeongame.entities.Dungeon;
+import com.albertsalud.dungeongame.entities.characters.Character;
+import com.albertsalud.dungeongame.factories.DungeonFactory;
+import com.albertsalud.dungeongame.helpers.DungeonPrinter;
+import com.albertsalud.dungeongame.helpers.EnemyTurn;
+import com.albertsalud.dungeongame.helpers.PlayerTurn;
 
 public class Main {
 	

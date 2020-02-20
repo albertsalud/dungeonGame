@@ -1,10 +1,10 @@
-package com.albertsalud.entities;
+package com.albertsalud.dungeongame.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.albertsalud.entities.characters.Character;
-import com.albertsalud.helpers.DungeonPrinter;
+import com.albertsalud.dungeongame.helpers.DungeonPrinter;
+import com.albertsalud.dungeongame.entities.characters.Character;
 
 public class Dungeon {
 	

@@ -1,14 +1,14 @@
-package com.albertsalud.entities.weapons;
+package com.albertsalud.dungeongame.entities.weapons;
 
-import com.albertsalud.entities.characters.Character;
+import com.albertsalud.dungeongame.entities.characters.Character;
 
 public abstract class Weapon {
 
-	private String name;
-	private int minDistance;
-	private int maxDistance;
+	protected String name;
+	protected int minDistance;
+	protected int maxDistance;
 	
-	private int damage;
+	protected int damageDice;
 	protected String description;
 	
 	public abstract boolean attack(Character attackerCharacter, Character targetCharacter);
@@ -29,12 +29,12 @@ public abstract class Weapon {
 		this.maxDistance = maxDistance;
 	}
 
-	public int getDamage() {
-		return damage;
+	public int getDamageDice() {
+		return damageDice;
 	}
 
-	protected void setDamage(int damage) {
-		this.damage = damage;
+	protected void setDamageDice(int damage) {
+		this.damageDice = damage;
 	}
 
 	public String getName() {

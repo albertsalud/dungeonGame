@@ -1,8 +1,8 @@
-package com.albertsalud.helpers;
+package com.albertsalud.dungeongame.helpers;
 
-import com.albertsalud.entities.Dungeon;
-import com.albertsalud.entities.characters.Character;
-import com.albertsalud.entities.characters.EnemyCharacter;
+import com.albertsalud.dungeongame.entities.Dungeon;
+import com.albertsalud.dungeongame.entities.characters.EnemyCharacter;
+import com.albertsalud.dungeongame.entities.characters.Character;
 
 public class EnemyTurn {
 	
