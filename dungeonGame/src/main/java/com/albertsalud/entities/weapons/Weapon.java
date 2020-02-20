@@ -1,4 +1,6 @@
-package com.albertsalud.entities;
+package com.albertsalud.entities.weapons;
+
+import com.albertsalud.entities.characters.Character;
 
 public abstract class Weapon {
 
@@ -43,7 +45,7 @@ public abstract class Weapon {
 		this.name = name;
 	}
 	
-	protected boolean isAvailableAttack(Character attackerCharacter, Character targetCharacter) {
+	public boolean isAvailableAttack(Character attackerCharacter, Character targetCharacter) {
 		int distanceBetweenCharacters = Math.abs(attackerCharacter.getxCoordinate() - targetCharacter.getxCoordinate())
 		+ Math.abs(attackerCharacter.getyCoordinate() - targetCharacter.getyCoordinate());
 		

@@ -1,4 +1,6 @@
-package com.albertsalud.entities;
+package com.albertsalud.entities.characters;
+
+import com.albertsalud.entities.weapons.Weapon;
 
 public abstract class Character {
 
@@ -107,7 +109,7 @@ public abstract class Character {
 		this.equipedWeapon = weapon;
 	}
 	
-	protected void getDamage(int damage) {
+	public void getDamage(int damage) {
 		System.out.println(this.getName() + " sufre " + damage + " puntos de vida!");
 		this.vitality -= damage;
 		if(vitality > 0) System.out.println("Aún le quedan " + vitality + " puntos de vida.");

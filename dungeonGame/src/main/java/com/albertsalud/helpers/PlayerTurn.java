@@ -1,8 +1,8 @@
 package com.albertsalud.helpers;
 
-import com.albertsalud.entities.Character;
 import com.albertsalud.entities.Dungeon;
-import com.albertsalud.entities.PlayerCharacter;
+import com.albertsalud.entities.characters.Character;
+import com.albertsalud.entities.characters.PlayerCharacter;
 import com.albertsalud.main.Main;
 
 public class PlayerTurn {
@@ -74,7 +74,8 @@ public class PlayerTurn {
 			
 				if(selectedWeapon == 0) break;
 				
-				if(!player.setEquipedWeapon(selectedWeapon)) throw new Exception("No te has podido equipar con el arma seleccionada.");
+				actionExecuted = player.setEquipedWeapon(selectedWeapon);
+				if(!actionExecuted) throw new Exception("No te has podido equipar con el arma seleccionada.");
 				rigthEntry = true;
 				
 			} catch (NumberFormatException e) {

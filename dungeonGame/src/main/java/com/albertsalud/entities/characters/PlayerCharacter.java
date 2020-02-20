@@ -1,7 +1,12 @@
-package com.albertsalud.entities;
+package com.albertsalud.entities.characters;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.albertsalud.entities.weapons.Bow;
+import com.albertsalud.entities.weapons.ShotGun;
+import com.albertsalud.entities.weapons.Sword;
+import com.albertsalud.entities.weapons.Weapon;
 
 public class PlayerCharacter extends Character {
 	
@@ -18,9 +23,12 @@ public class PlayerCharacter extends Character {
 	private void setAvailableWeapons() {
 		Weapon sword = new Sword();
 		Weapon bow = new Bow();
-		availableWeapons = new ArrayList<Weapon>(2);
+		Weapon shotgun = new ShotGun();
+		
+		availableWeapons = new ArrayList<Weapon>(3);
 		availableWeapons.add(0, sword);
 		availableWeapons.add(1, bow);
+		availableWeapons.add(2, shotgun);
 		
 		this.setEquipedWeapon(sword);
 	}

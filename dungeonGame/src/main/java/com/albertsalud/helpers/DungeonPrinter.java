@@ -1,7 +1,7 @@
 package com.albertsalud.helpers;
 
-import com.albertsalud.entities.Character;
 import com.albertsalud.entities.Dungeon;
+import com.albertsalud.entities.characters.Character;
 
 public class DungeonPrinter {
 	

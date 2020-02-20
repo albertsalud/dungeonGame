@@ -1,8 +1,8 @@
 package com.albertsalud.factories;
 
 import com.albertsalud.entities.Dungeon;
-import com.albertsalud.entities.EnemyCharacter;
-import com.albertsalud.entities.PlayerCharacter;
+import com.albertsalud.entities.characters.EnemyCharacter;
+import com.albertsalud.entities.characters.PlayerCharacter;
 
 public abstract class DungeonFactory {
 	

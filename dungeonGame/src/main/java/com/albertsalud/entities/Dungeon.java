@@ -3,6 +3,7 @@ package com.albertsalud.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.albertsalud.entities.characters.Character;
 import com.albertsalud.helpers.DungeonPrinter;
 
 public class Dungeon {
@@ -89,6 +90,10 @@ public class Dungeon {
 	public void removeCharacter(Character targetCharacter) {
 		dungeonCharacters.remove(targetCharacter);
 		
+	}
+	
+	public Character getMainCharacter() {
+		return dungeonCharacters.get(0);
 	}
 
 	

@@ -1,4 +1,7 @@
-package com.albertsalud.entities;
+package com.albertsalud.entities.weapons;
+
+import com.albertsalud.entities.characters.Character;
+import com.albertsalud.helpers.Dice;
 
 public class Sword extends Weapon {
 	
@@ -18,8 +21,8 @@ public class Sword extends Weapon {
 			return false;
 		}
 		
-		// TODO tirar el dado para ver si acierta
-		targetCharacter.getDamage(this.getDamage());
+		if(Dice.roll(Dice.TWENTIE_SIDES_DICE) > 12) targetCharacter.getDamage(this.getDamage());
+		else System.out.println("Fallaste! El enemigo ha esquivado el ataque.");
 		
 		return true;
 	}

@@ -1,9 +1,10 @@
 package com.albertsalud.main;
 
-import com.albertsalud.entities.Character;
 import com.albertsalud.entities.Dungeon;
+import com.albertsalud.entities.characters.Character;
 import com.albertsalud.factories.DungeonFactory;
 import com.albertsalud.helpers.DungeonPrinter;
+import com.albertsalud.helpers.EnemyTurn;
 import com.albertsalud.helpers.PlayerTurn;
 
 public class Main {
@@ -31,7 +32,7 @@ public class Main {
 
 	private static void executeCharacterTurn(Dungeon dungeon, Character currentCharacter) {
 		if(currentCharacter.getDungeonMark().contentEquals("P")) new PlayerTurn(dungeon, currentCharacter);
-		//else new EnemyTurn(currentCharacter);
+		else new EnemyTurn(dungeon, currentCharacter);
 		
 	}
 

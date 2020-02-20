@@ -1,4 +1,7 @@
-package com.albertsalud.entities;
+package com.albertsalud.entities.weapons;
+
+import com.albertsalud.entities.characters.Character;
+import com.albertsalud.helpers.Dice;
 
 public class Bow extends Weapon {
 	
@@ -25,10 +28,10 @@ public class Bow extends Weapon {
 			System.out.println("No te quedan flechas para disparar!");
 		}
 		
-		// TODO tirar el dado para ver si acierta
+		if(Dice.roll(Dice.TWENTIE_SIDES_DICE) > 12) targetCharacter.getDamage(this.getDamage());
+		else System.out.println("Fallaste! El enemigo ha esquivado el ataque.");
 		
 		arrows--;
-		targetCharacter.getDamage(this.getDamage());
 		System.out.println("Te quedan " + arrows + " flechas disponibles.");
 		
 		return true;
